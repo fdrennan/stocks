@@ -136,3 +136,7 @@ th {
   background-color: cornsilk;
   color: black;
 }
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}

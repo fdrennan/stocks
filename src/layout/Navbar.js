@@ -7,12 +7,15 @@ const Navbar = props => {
       <Link to="/">
         <h1 className="navbar-link">Home</h1>
       </Link>
-      <Link to="/image">
-        <h1 className="navbar-link">Images</h1>
-      </Link>
-      <h1>
-        <i className={"fab fa-github"}> </i> {props.navTitle}
-      </h1>
+      <a href="https://github.com/fdrennan/stocks" target="_blank">
+        <i className={"fab fa-github"}> </i>
+        <h1 className="navbar-link">App REPO</h1>
+      </a>
+      <a href="https://github.com/fdrennan/stockAPI" target="_blank">
+        <i className={"fab fa-github"}> </i>
+        <h1 className="navbar-link">R REPO</h1>
+      </a>
+      <h1>{props.navTitle}</h1>
     </nav>
   );
 };

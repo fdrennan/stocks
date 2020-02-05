@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useFetch } from "./hooks";
 import { CSVLink } from "react-csv";
+import { Collapse } from "react-collapse";
 
 function DataTable(props) {
   const { message, data } = useFetch(props.baseUrl, {});
+  const [hider, setHider] = useState(true);
 
   const json2array = json => {
     console.log("Inside json2array");
@@ -75,8 +77,17 @@ function DataTable(props) {
 
   const parsedData = cleanData(data);
 
+  const hideTable = () => {
+    setHider(!hider);
+  };
+
   return (
     <div>
+      {hider ? (
+        <button onClick={hideTable}>Hide Table</button>
+      ) : (
+        <button onClick={hideTable}>Show Table</button>
+      )}
       {data ? (
         <CSVLink
           data={jsonToCSV(data)}
@@ -90,7 +101,7 @@ function DataTable(props) {
           <em>{message}</em>
         </p>
       )}
-      {parsedData}
+      <Collapse isOpened={hider}>{parsedData}</Collapse>
     </div>
   );
 }

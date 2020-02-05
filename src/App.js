@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import DataTable from "./DataTable";
 import Form from "./Form";
-import Images from "./Images";
 import SearchHistory from "./SearchHistory";
+import ToggleImage from "./layout/ToggleImage";
+import { Collapse } from "react-collapse";
+
 const practice = () => {
   const input = "AAPL, DJIA".split(",").map(x => x.trim());
   const jsonOutput = JSON.stringify(input);
@@ -12,7 +14,7 @@ const practice = () => {
 practice();
 
 // Global starting variables
-const PORT = 8368;
+const PORT = 8000;
 
 function App() {
   // Starting Function
@@ -75,7 +77,6 @@ function App() {
 
   return (
     <div className="App">
-      <hr />
       <Form
         searchQuery={searchQuery}
         userQuery={userQuery}
@@ -86,9 +87,11 @@ function App() {
         setUserQuery={setUserQuery}
       />
       <hr />
-      <Images baseUrlImage={baseUrlImage} baseUrl={baseUrl} />
+      <ToggleImage baseUrlImage={baseUrlImage} baseUrl={baseUrl} />
       <hr />
-      <DataTable baseUrl={baseUrl} setBaseUrl={setBaseUrl} />
+      <Collapse isOpened={true}>
+        <DataTable baseUrl={baseUrl} setBaseUrl={setBaseUrl} />
+      </Collapse>
       <hr />
       <SearchHistory priorSearches={priorSearches} />
       <hr />
