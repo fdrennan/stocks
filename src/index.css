@@ -1,15 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Economica|Roboto+Condensed');
 
 body {
-  margin: 5%;
+  margin: 0%;
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
-  background-color: cornsilk;
+  background-color: #FFF8DC;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Economica', sans-serif;
+  color: white;
 }
+
+
 
 .form {
   height: 25px;
@@ -99,4 +102,41 @@ table {
 
 th {
   height: 50px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 1;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  background-color: black;
+  color: white;
+}
+
+.form-display {
+  background-color: burlywood;
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 1;
+}
+
+.gg-plot {
+  /*width: 70%;*/
+  /*height: 50%;*/
+}
+
+.navbar-link:hover {
+  font-family: 'Economica', sans-serif;
+  background-color: cornsilk;
+  color: black;
+}
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
 }
