@@ -4,12 +4,13 @@ body {
   margin: 0%;
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
-  background-color: #FFF8DC;
+  background-color: #071F2F;
+  color: white;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Economica', sans-serif;
-  color: white;
+  color: #81B7D4;
 }
 
 
@@ -21,10 +22,14 @@ h1, h2, h3, h4, h5 {
 }
 
 input {
+  background-color: #071F2F;
   width: 300px;
   height: 19px;
   font-size: 16px;
-  margin: 1px;
+  margin: 0px;
+  font-family: 'Economica', sans-serif;
+  color: #81B7D4;
+  /*background-color: #071F2F;*/
 }
 
 .form > input {
@@ -38,6 +43,10 @@ input {
 
 button {
   height: 25px;
+  border-width: 0px;
+  background-color: #071F2F;
+  font-family: 'Roboto Condensed', sans-serif;
+  color: white;
 }
 
 .Gallery {
@@ -104,39 +113,58 @@ th {
   height: 50px;
 }
 
+
+
+.form-display {
+  background-color: #28343B;
+  /*background-color: #2C4252;*/
+
+  /*background-color: #2C4252;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 1;
+}
+
+.form-input {
+  display: grid;
+}
+
+.gg-plot {
+  width: 90%;
+  /*height: 50%;*/
+}
+
+.navbar-link:hover {
+  font-family: 'Economica', sans-serif;
+  color: #077CBC;
+}
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
+.page-button {
+  font-family: 'Economica', sans-serif;
+  width: 100%;
+  height: 100%;
+  background-color: #28343B;
+
+  border-width: 0 0 1px 0;
+  color: white;
+  font-size: 1.3rem;
+}
+
 .navbar {
+  background-color: #131E25;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
   z-index: 1;
   opacity: 0.9;
-  margin-bottom: 1rem;
-  background-color: black;
+  /*margin-bottom: 1rem;*/
+  /*background-color: #28343B;*/
   color: white;
-}
-
-.form-display {
-  background-color: burlywood;
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
-}
-
-.gg-plot {
-  /*width: 70%;*/
-  /*height: 50%;*/
-}
-
-.navbar-link:hover {
-  font-family: 'Economica', sans-serif;
-  background-color: cornsilk;
-  color: black;
-}
-
-.ReactCollapse--collapse {
-  transition: height 500ms;
 }

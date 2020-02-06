@@ -1,36 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useFetch } from "./hooks";
-import { CSVLink } from "react-csv";
 import { Collapse } from "react-collapse";
+import DataDownload from "./DataDownload";
 
 function DataTable(props) {
   const { message, data } = useFetch(props.baseUrl, {});
-  const [hider, setHider] = useState(true);
+  const [hider, setHider] = useState(false);
 
-  const json2array = json => {
-    console.log("Inside json2array");
-    let result = [];
-    let keys = Object.keys(json);
-    keys.forEach(function(key) {
-      result.push(json[key]);
-    });
-
-    return result;
-  };
-
-  const jsonToCSV = data => {
-    console.log("Inside jsonToCSV");
-    if (data) {
-      console.log("Inside jsonToCSV:data");
-      const returnedData = JSON.parse(data);
-      return json2array(returnedData);
-    }
-  };
+  // if (message) {
+  //   props.setApiMessage(message)
+  // }
 
   const cleanData = data => {
     console.log("Inside cleanData");
-
+      props.setApiMessage(message);
     if (data) {
+
       console.log("Inside cleanData:if(data)");
       const parseData = JSON.parse(data);
 
@@ -84,24 +69,14 @@ function DataTable(props) {
   return (
     <div>
       {hider ? (
-        <button onClick={hideTable}>Hide Table</button>
+        <button className='page-button' onClick={hideTable}>Hide Table</button>
       ) : (
-        <button onClick={hideTable}>Show Table</button>
+        <button className='page-button' onClick={hideTable}>Show Table</button>
       )}
-      {data ? (
-        <CSVLink
-          data={jsonToCSV(data)}
-          filename={"stock-data.csv"}
-          target="data"
-        >
-          Download Me
-        </CSVLink>
-      ) : (
-        <p>
-          <em>{message}</em>
-        </p>
-      )}
-      <Collapse isOpened={hider}>{parsedData}</Collapse>
+      <Collapse isOpened={hider}>{<div>
+        <DataDownload data={data}/>
+        {parsedData}
+      </div>}</Collapse>
     </div>
   );
 }
