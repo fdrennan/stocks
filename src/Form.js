@@ -71,7 +71,9 @@ function Form(props) {
                 id='ma-days'
             />
         </div>
-        <button onClick={props.searchQuery}>Search</button>
+        <div className='form-input'>
+            <button onClick={props.searchQuery}>Search</button>
+        </div>
     </div>
   );
 }
