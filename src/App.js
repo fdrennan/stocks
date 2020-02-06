@@ -32,7 +32,7 @@ function App() {
   };
 
   // APPLICATION STARTING VARIABLES
-  const [userQuery, setUserQuery] = useState("AAPL");
+  const [userQuery, setUserQuery] = useState("BOA, M, F, AKRX");
   const [userStartDate, setUserStartDate] = useState("2019-01-01");
   const [userEndDate, setUserEndDate] = useState("2020-01-01");
   const [maDays, setMaDays] = useState("5");
