@@ -6,7 +6,7 @@ import ToggleImage from "./layout/ToggleImage";
 import { Collapse } from "react-collapse";
 
 // Global starting variables
-const PORT = 8827;
+const PORT = 8000;
 
 function App() {
   // Starting Function
