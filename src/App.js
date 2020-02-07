@@ -7,7 +7,7 @@ import { Collapse } from "react-collapse";
 
 // Global starting variables
 const PORT = 8000;
-
+const LOCAL = false;
 function App() {
   // Starting Function
   const baseUrlCreator = (port, ticker, startDate, endDate, maDays, image, local=false) => {
@@ -42,16 +42,18 @@ function App() {
     userQuery,
     userStartDate,
     userEndDate,
-      maDays,
-    false
+    maDays,
+    false,
+    LOCAL
   );
   const initialBaseUrlImage = baseUrlCreator(
     PORT,
     userQuery,
     userStartDate,
     userEndDate,
-      maDays,
-    true
+    maDays,
+    true,
+    LOCAL
   );
   const [baseUrl, setBaseUrl] = useState(initialBaseUrl);
   const [baseUrlImage, setBaseUrlImage] = useState(initialBaseUrlImage);
@@ -65,15 +67,16 @@ function App() {
       userStartDate,
       userEndDate,
       maDays,
-      false
+      LOCAL
     );
+    console.log("Inside searchQuery WHUUUT");
     const newBaseUrlImage = baseUrlCreator(
       PORT,
       userQuery,
       userStartDate,
       userEndDate,
       maDays,
-      true
+      LOCAL
     );
     // #1
     setBaseUrl(newBaseUrl);
