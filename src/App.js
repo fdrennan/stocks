@@ -68,19 +68,22 @@ function App() {
       userStartDate,
       userEndDate,
       maDays,
+      false,
       LOCAL
     );
-    console.log("Inside searchQuery WHUUUT");
+
     const newBaseUrlImage = baseUrlCreator(
       PORT,
       userQuery,
       userStartDate,
       userEndDate,
       maDays,
+      true,
       LOCAL
     );
     // #1
     setBaseUrl(newBaseUrl);
+
     setBaseUrlImage(newBaseUrlImage);
     let cleanTicker = userQuery.split(",").map(x => x.trim());
     cleanTicker = JSON.stringify(cleanTicker);
