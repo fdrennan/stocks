@@ -74,7 +74,8 @@ function DataTable(props) {
         <button className='page-button' onClick={hideTable}>Show Table</button>
       )}
       <Collapse isOpened={hider}>{<div>
-        <DataDownload data={data}/>
+          <a href={props.baseExcel}><h3>Download Data</h3></a>
+        {/*<DataDownload data={data}/>*/}
         {parsedData}
       </div>}</Collapse>
     </div>

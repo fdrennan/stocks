@@ -1,4 +1,5 @@
 import React from "react";
+
 // import { Collapse } from "react-collapse";
 import { CSVLink } from "react-csv";
 
@@ -30,6 +31,8 @@ const DataDownload = props => {
 
     return (
         <div>
+            {console.log(`BASE EXCEL: ${props.baseExcel}`)}
+            {props.baseExcel && <a href={props.baseExcel}><h3>Download data</h3></a>}
             {props.data && (
                 <CSVLink
                     data={jsonToCSV(props.data)}
