@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Collapse } from "react-collapse";
+import React from "react";
+// import { Collapse } from "react-collapse";
 import { CSVLink } from "react-csv";
 
 const DataDownload = props => {

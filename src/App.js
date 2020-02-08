@@ -4,10 +4,10 @@ import Form from "./Form";
 import SearchHistory from "./SearchHistory";
 import ToggleImage from "./layout/ToggleImage";
 import { Collapse } from "react-collapse";
-
+import Markdown from "./Markdown"
 // Global starting variables
 const PORT = 8000;
-const LOCAL = false;
+const LOCAL = true;
 function App() {
   // Starting Function
   const baseUrlCreator = (port, ticker, startDate, endDate, maDays, image, local=false) => {
@@ -57,6 +57,7 @@ function App() {
   );
   const [baseUrl, setBaseUrl] = useState(initialBaseUrl);
   const [baseUrlImage, setBaseUrlImage] = useState(initialBaseUrlImage);
+  const [htmlUrl, setHtmlUrl] = useState(  'http://drenr.com/api/html?stocks=["BOA", "M", "F", "AKRX"]');
   const [priorSearches, setPriorSearches] = useState([]);
 
   const searchQuery = () => {
@@ -81,6 +82,9 @@ function App() {
     // #1
     setBaseUrl(newBaseUrl);
     setBaseUrlImage(newBaseUrlImage);
+    let cleanTicker = userQuery.split(",").map(x => x.trim());
+    cleanTicker = JSON.stringify(cleanTicker);
+    setHtmlUrl(`http://drenr.com/api/html?stocks=${cleanTicker}`);
     // #2
     setPriorSearches([...priorSearches, newBaseUrl]);
   };
@@ -111,6 +115,8 @@ function App() {
                    baseUrl={baseUrl}
                    setBaseUrl={setBaseUrl} />
       </Collapse>
+
+      <Markdown htmlUrl={htmlUrl}/>
 
       <SearchHistory priorSearches={priorSearches} />
 

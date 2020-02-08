@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useFetch } from "./hooks";
 import { Collapse } from "react-collapse";
 import DataDownload from "./DataDownload";
