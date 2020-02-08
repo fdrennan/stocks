@@ -7,7 +7,7 @@ import { Collapse } from "react-collapse";
 import Markdown from "./Markdown"
 // Global starting variables
 const PORT = 8000;
-const LOCAL = true;
+const LOCAL = false;
 function App() {
   // Starting Function
   const baseUrlCreator = (port, ticker, startDate, endDate, maDays, image, local=false) => {
