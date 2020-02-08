@@ -15,19 +15,28 @@ import Markdown from "./Markdown"
 // Global starting variables
 const PORT = 8000;
 const LOCAL = true;
+
 function App() {
   // Starting Function
-  const baseUrlCreator = (port, ticker, startDate, endDate, maDays, image, local=false, excel) => {
+  const baseUrlCreator = (port, ticker, startDate, endDate, maDays, image, local=false, excel, html) => {
     console.log("\n\n\n\nInside baseUrlCreator");
 
     let cleanTicker = ticker.split(",").map(x => x.trim());
     cleanTicker = JSON.stringify(cleanTicker);
 
+    if(html) {
+      if(local) {
+        return `http://127.0.0.1:${port}/html?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
+      } else {
+        return `http://drenr.com/api/html?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
+      }
+    }
+
     if (excel) {
       if (local) {
-        return `http://127.0.0.1:${port}/stocks_excel?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
+        return `http://127.0.0.1:8000/html?stocks=${cleanTicker}`;
       } else {
-        return `http://drenr.com/api/stocks_excel?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
+        return `http://drenr.com/api/html?stocks=${cleanTicker}`;
       }
     }
 
@@ -61,7 +70,8 @@ function App() {
     maDays,
     false,
     LOCAL,
-    false
+    false,
+      false
   );
   const initialBaseUrlImage = baseUrlCreator(
     PORT,
@@ -71,6 +81,7 @@ function App() {
     maDays,
     true,
     LOCAL,
+      false,
       false
   );
 
@@ -82,14 +93,27 @@ function App() {
       maDays,
       false,
       LOCAL,
-      true
+      true,
+      false
   );
 
+  const initialBaseHtml = baseUrlCreator(
+      PORT,
+      userQuery,
+      userStartDate,
+      userEndDate,
+      maDays,
+      false,
+      LOCAL,
+      false,
+      true
+  );
+console.log(initialBaseHtml)
   console.log(`IBE: ${initialBaseExcel}`);
   const [baseUrl, setBaseUrl] = useState(initialBaseUrl);
   const [baseUrlImage, setBaseUrlImage] = useState(initialBaseUrlImage);
   const [baseExcel, setBaseExcel] = useState(initialBaseExcel);
-  const [htmlUrl, setHtmlUrl] = useState(  'http://drenr.com/api/html?stocks=["BOA", "M", "F", "AKRX"]');
+  const [htmlUrl, setHtmlUrl] = useState(  initialBaseHtml);
   const [priorSearches, setPriorSearches] = useState([]);
 
   const searchQuery = () => {
@@ -126,13 +150,26 @@ function App() {
         LOCAL,
         true
     );
+
+    const newBaseHtml = baseUrlCreator(
+        PORT,
+        userQuery,
+        userStartDate,
+        userEndDate,
+        maDays,
+        false,
+        LOCAL,
+        false,
+        true
+    );
     // #1
     setBaseUrl(newBaseUrl);
     setBaseUrlImage(newBaseUrlImage);
     setBaseExcel(newBaseExcel);
-    let cleanTicker = userQuery.split(",").map(x => x.trim());
-    cleanTicker = JSON.stringify(cleanTicker);
-    setHtmlUrl(`http://drenr.com/api/html?stocks=${cleanTicker}`);
+
+    // let cleanTicker = userQuery.split(",").map(x => x.trim());
+    // cleanTicker = JSON.stringify(cleanTicker);
+    setHtmlUrl(newBaseHtml);
     // #2
     setPriorSearches([...priorSearches, newBaseUrl]);
   };
