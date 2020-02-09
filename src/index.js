@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {HashRouter,  Route, Switch} from "react-router-dom";
-import "./index.css";
+import { HashRouter, Route, Switch } from "react-router-dom";
+import "./index.scss";
 import App from "./App";
 import Navbar from "./layout/Navbar";
 
@@ -13,7 +13,7 @@ const NotFoundPage = () => {
   return <div>404 NOT FOUND</div>;
 };
 const Routes = (
-  <HashRouter basename='/'>
+  <HashRouter basename="/">
     <Navbar navTitle={"Stock Application"} />
     <Switch>
       <Route path="/" component={App} exact={true} />

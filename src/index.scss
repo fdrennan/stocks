@@ -134,9 +134,8 @@ th {
 .page-button {
   font-family: 'Economica', sans-serif;
   width: 100%;
-  height: 100%;
+  height: 50px;
   background-color: #28343B;
-
   border-width: 0 0 1px 0;
   color: white;
   font-size: 1.3rem;
@@ -144,9 +143,6 @@ th {
 
 .form-display {
   background-color: #28343B;
-  /*background-color: #2C4252;*/
-
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -184,7 +180,6 @@ th {
     width: 100%;
   }
 }
-
 
 .navbar {
   background-color: #131E25;

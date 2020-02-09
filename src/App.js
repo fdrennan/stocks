@@ -4,28 +4,29 @@ import Form from "./Form";
 import SearchHistory from "./SearchHistory";
 import ToggleImage from "./layout/ToggleImage";
 import { Collapse } from "react-collapse";
-import Markdown from "./Markdown"
-// import {Platform, StyleSheet} from 'react';
-//
-// const styles = StyleSheet.create({
-//   height: Platform.OS === 'ios' ? 200 : 100,
-// });
-//
-// console.log(styles)
-// Global starting variables
+import Markdown from "./Markdown";
+
 const PORT = 8000;
 const LOCAL = true;
 
 function App() {
   // Starting Function
-  const baseUrlCreator = (port, ticker, startDate, endDate, maDays, image, local=false, excel, html) => {
-    console.log("\n\n\n\nInside baseUrlCreator");
-
+  const baseUrlCreator = (
+    port,
+    ticker,
+    startDate,
+    endDate,
+    maDays,
+    image,
+    local = false,
+    excel,
+    html
+  ) => {
     let cleanTicker = ticker.split(",").map(x => x.trim());
     cleanTicker = JSON.stringify(cleanTicker);
 
-    if(html) {
-      if(local) {
+    if (html) {
+      if (local) {
         return `http://127.0.0.1:${port}/html?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
       } else {
         return `http://drenr.com/api/html?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
@@ -34,9 +35,9 @@ function App() {
 
     if (excel) {
       if (local) {
-        return `http://127.0.0.1:8000/html?stocks=${cleanTicker}`;
+        return `http://127.0.0.1:8000/stocks_excel?stocks=${cleanTicker}`;
       } else {
-        return `http://drenr.com/api/html?stocks=${cleanTicker}`;
+        return `http://drenr.com/api/stocks_excel?stocks=${cleanTicker}`;
       }
     }
 
@@ -46,9 +47,8 @@ function App() {
       } else {
         return `http://drenr.com/api/get_stocks?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
       }
-
     } else {
-      if(local) {
+      if (local) {
         return `http://127.0.0.1:${port}/get_stocks_data?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}`;
       } else {
         return `http://drenr.com/api/get_stocks_data?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}`;
@@ -71,7 +71,7 @@ function App() {
     false,
     LOCAL,
     false,
-      false
+    false
   );
   const initialBaseUrlImage = baseUrlCreator(
     PORT,
@@ -81,43 +81,41 @@ function App() {
     maDays,
     true,
     LOCAL,
-      false,
-      false
+    false,
+    false
   );
 
   const initialBaseExcel = baseUrlCreator(
-      PORT,
-      userQuery,
-      userStartDate,
-      userEndDate,
-      maDays,
-      false,
-      LOCAL,
-      true,
-      false
+    PORT,
+    userQuery,
+    userStartDate,
+    userEndDate,
+    maDays,
+    false,
+    LOCAL,
+    true,
+    false
   );
 
   const initialBaseHtml = baseUrlCreator(
-      PORT,
-      userQuery,
-      userStartDate,
-      userEndDate,
-      maDays,
-      false,
-      LOCAL,
-      false,
-      true
+    PORT,
+    userQuery,
+    userStartDate,
+    userEndDate,
+    maDays,
+    false,
+    LOCAL,
+    false,
+    true
   );
-console.log(initialBaseHtml)
-  console.log(`IBE: ${initialBaseExcel}`);
+
   const [baseUrl, setBaseUrl] = useState(initialBaseUrl);
   const [baseUrlImage, setBaseUrlImage] = useState(initialBaseUrlImage);
   const [baseExcel, setBaseExcel] = useState(initialBaseExcel);
-  const [htmlUrl, setHtmlUrl] = useState(  initialBaseHtml);
+  const [htmlUrl, setHtmlUrl] = useState(initialBaseHtml);
   const [priorSearches, setPriorSearches] = useState([]);
 
   const searchQuery = () => {
-    console.log("Inside searchQuery");
     const newBaseUrl = baseUrlCreator(
       PORT,
       userQuery,
@@ -126,7 +124,7 @@ console.log(initialBaseHtml)
       maDays,
       false,
       LOCAL,
-        false
+      false
     );
 
     const newBaseUrlImage = baseUrlCreator(
@@ -137,30 +135,31 @@ console.log(initialBaseHtml)
       maDays,
       true,
       LOCAL,
-        false
+      false
     );
 
     const newBaseExcel = baseUrlCreator(
-        PORT,
-        userQuery,
-        userStartDate,
-        userEndDate,
-        maDays,
-        false,
-        LOCAL,
-        true
+      PORT,
+      userQuery,
+      userStartDate,
+      userEndDate,
+      maDays,
+      false,
+      LOCAL,
+      true,
+      false
     );
 
     const newBaseHtml = baseUrlCreator(
-        PORT,
-        userQuery,
-        userStartDate,
-        userEndDate,
-        maDays,
-        false,
-        LOCAL,
-        false,
-        true
+      PORT,
+      userQuery,
+      userStartDate,
+      userEndDate,
+      maDays,
+      false,
+      LOCAL,
+      false,
+      true
     );
     // #1
     setBaseUrl(newBaseUrl);
@@ -174,12 +173,10 @@ console.log(initialBaseHtml)
     setPriorSearches([...priorSearches, newBaseUrl]);
   };
 
-
   return (
     <div className="App">
-      {
-        apiMessage ? <div>{apiMessage}</div> : <div>{apiMessage}</div>
-      }
+      {apiMessage ? <div>{apiMessage}</div> : <div>{apiMessage}</div>}
+      {/*<SidebarMenu/>*/}
       <Form
         searchQuery={searchQuery}
         userQuery={userQuery}
@@ -191,21 +188,22 @@ console.log(initialBaseHtml)
         userEndDate={userEndDate}
         setUserQuery={setUserQuery}
       />
-      <br/>
+      <br />
       <ToggleImage baseUrlImage={baseUrlImage} baseUrl={baseUrl} />
 
       <Collapse isOpened={true}>
-        <DataTable apiMessage={apiMessage}
-                   setApiMessage={setApiMessage}
-                   baseUrl={baseUrl}
-                   setBaseUrl={setBaseUrl}
-                   baseExcel={baseExcel}/>
+        <DataTable
+          apiMessage={apiMessage}
+          setApiMessage={setApiMessage}
+          baseUrl={baseUrl}
+          setBaseUrl={setBaseUrl}
+          baseExcel={baseExcel}
+        />
       </Collapse>
 
-      <Markdown htmlUrl={htmlUrl}/>
+      <Markdown htmlUrl={htmlUrl} />
 
       <SearchHistory priorSearches={priorSearches} />
-
     </div>
   );
 }

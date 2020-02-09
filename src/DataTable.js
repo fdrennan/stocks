@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFetch } from "./hooks";
 import { Collapse } from "react-collapse";
-import DataDownload from "./DataDownload";
+// import DataDownload from "./DataDownload";
 
 function DataTable(props) {
   const { message, data } = useFetch(props.baseUrl, {});
@@ -12,11 +12,11 @@ function DataTable(props) {
   // }
 
   const cleanData = data => {
-    console.log("Inside cleanData");
+
       props.setApiMessage(message);
     if (data) {
 
-      console.log("Inside cleanData:if(data)");
+
       const parseData = JSON.parse(data);
 
       const sortedData = parseData.sort(function(a, b) {
