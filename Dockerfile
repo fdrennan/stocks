@@ -8,8 +8,10 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 
 # install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
+COPY yarn.lock /app/yarn.lock
+COPY config /app/config
+RUN yarn install
+RUN yarn add node-sass@latest
 COPY public /app/public
 # start app
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
