@@ -3,10 +3,8 @@ version: '3.7'
 services:
 
   sample:
-    container_name: reacter
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: reactrapp
+    container_name: reactrappcontainer
     volumes:
       - '.:/app'
       - '/app/node_modules'
