@@ -7,7 +7,7 @@ import { Collapse } from "react-collapse";
 import Markdown from "./Markdown";
 
 const PORT = 8000;
-const LOCAL = true;
+const LOCAL = false;
 
 function App() {
   // Starting Function
@@ -20,7 +20,8 @@ function App() {
     image,
     local = false,
     excel,
-    html
+    html,
+    pdf
   ) => {
     let cleanTicker = ticker.split(",").map(x => x.trim());
     cleanTicker = JSON.stringify(cleanTicker);
@@ -30,6 +31,14 @@ function App() {
         return `http://127.0.0.1:${port}/html?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
       } else {
         return `http://drenr.com/api/html?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
+      }
+    }
+
+    if (pdf) {
+      if (local) {
+        return `http://127.0.0.1:${port}/pdf?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
+      } else {
+        return `http://drenr.com/api/pdf?stocks=${cleanTicker}&startDate=${startDate}&endDate=${endDate}&ma_days=${maDays}`;
       }
     }
 
@@ -71,7 +80,8 @@ function App() {
     false,
     LOCAL,
     false,
-    false
+    false,
+      false
   );
   const initialBaseUrlImage = baseUrlCreator(
     PORT,
@@ -82,7 +92,8 @@ function App() {
     true,
     LOCAL,
     false,
-    false
+    false,
+      false
   );
 
   const initialBaseExcel = baseUrlCreator(
@@ -94,7 +105,8 @@ function App() {
     false,
     LOCAL,
     true,
-    false
+    false,
+      false
   );
 
   const initialBaseHtml = baseUrlCreator(
@@ -106,13 +118,28 @@ function App() {
     false,
     LOCAL,
     false,
-    true
+    true,
+      false
+  );
+
+  const initialBasePdf = baseUrlCreator(
+      PORT,
+      userQuery,
+      userStartDate,
+      userEndDate,
+      maDays,
+      false,
+      LOCAL,
+      false,
+      false,
+      true
   );
 
   const [baseUrl, setBaseUrl] = useState(initialBaseUrl);
   const [baseUrlImage, setBaseUrlImage] = useState(initialBaseUrlImage);
   const [baseExcel, setBaseExcel] = useState(initialBaseExcel);
   const [htmlUrl, setHtmlUrl] = useState(initialBaseHtml);
+  const [pdfUrl, setPdfUrl] = useState(initialBasePdf);
   const [priorSearches, setPriorSearches] = useState([]);
 
   const searchQuery = () => {
@@ -124,7 +151,9 @@ function App() {
       maDays,
       false,
       LOCAL,
-      false
+      false,
+        false,
+        false
     );
 
     const newBaseUrlImage = baseUrlCreator(
@@ -135,7 +164,9 @@ function App() {
       maDays,
       true,
       LOCAL,
-      false
+      false,
+        false,
+        false
     );
 
     const newBaseExcel = baseUrlCreator(
@@ -147,7 +178,8 @@ function App() {
       false,
       LOCAL,
       true,
-      false
+      false,
+        false
     );
 
     const newBaseHtml = baseUrlCreator(
@@ -159,13 +191,29 @@ function App() {
       false,
       LOCAL,
       false,
-      true
+      true,
+        false
+    );
+
+    const newBasePdf = baseUrlCreator(
+        PORT,
+        userQuery,
+        userStartDate,
+        userEndDate,
+        maDays,
+        false,
+        LOCAL,
+        false,
+        false,
+        true
     );
     // #1
     setBaseUrl(newBaseUrl);
     setBaseUrlImage(newBaseUrlImage);
     setBaseExcel(newBaseExcel);
-
+    setPdfUrl(newBasePdf);
+    console.log('BASE PDF');
+    console.log(pdfUrl);
     // let cleanTicker = userQuery.split(",").map(x => x.trim());
     // cleanTicker = JSON.stringify(cleanTicker);
     setHtmlUrl(newBaseHtml);
