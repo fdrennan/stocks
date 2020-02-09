@@ -45,7 +45,7 @@ const Markdown = props => {
         <h3>PDF</h3>
         <iframe
           className="markdown"
-          src="http://127.0.0.1:8000/pdf"
+          src={props.pdfUrl}
           frameBorder="0"
           title="PDF Markdown"
         ></iframe>

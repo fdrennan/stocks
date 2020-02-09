@@ -249,7 +249,7 @@ function App() {
         />
       </Collapse>
 
-      <Markdown htmlUrl={htmlUrl} />
+      <Markdown htmlUrl={htmlUrl} pdfUrl={pdfUrl}/>
 
       <SearchHistory priorSearches={priorSearches} />
     </div>
