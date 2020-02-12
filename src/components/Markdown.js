@@ -42,7 +42,6 @@ const Markdown = props => {
         </button>
       )}
       <Collapse isOpened={hidePdf}>
-        <h3>PDF</h3>
         <iframe
           className="markdown"
           src={props.pdfUrl}

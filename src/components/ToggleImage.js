@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Images from "../Images";
+import Images from "./Images";
 import { Collapse } from "react-collapse";
 
 const ToggleImage = props => {
