@@ -10,9 +10,13 @@ const ToggleImage = props => {
   return (
     <div>
       {hider ? (
-        <button className='page-button' onClick={hideImage}>Hide Image</button>
+        <button className="page-button" onClick={hideImage}>
+          Hide Image
+        </button>
       ) : (
-        <button className='page-button' onClick={hideImage}>Show Image</button>
+        <button className="page-button" onClick={hideImage}>
+          Show Image
+        </button>
       )}
       <Collapse isOpened={hider}>
         <Images baseUrlImage={props.baseUrlImage} baseUrl={props.baseUrl} />

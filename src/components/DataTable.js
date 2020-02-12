@@ -12,11 +12,8 @@ function DataTable(props) {
   // }
 
   const cleanData = data => {
-
-      props.setApiMessage(message);
+    props.setApiMessage(message);
     if (data) {
-
-
       const parseData = JSON.parse(data);
 
       const sortedData = parseData.sort(function(a, b) {
@@ -69,15 +66,25 @@ function DataTable(props) {
   return (
     <div>
       {hider ? (
-        <button className='page-button' onClick={hideTable}>Hide Table</button>
+        <button className="page-button" onClick={hideTable}>
+          Hide Table
+        </button>
       ) : (
-        <button className='page-button' onClick={hideTable}>Show Table</button>
+        <button className="page-button" onClick={hideTable}>
+          Show Table
+        </button>
       )}
-      <Collapse isOpened={hider}>{<div>
-          <a href={props.baseExcel}><h3>Download Data</h3></a>
-        {/*<DataDownload data={data}/>*/}
-        {parsedData}
-      </div>}</Collapse>
+      <Collapse isOpened={hider}>
+        {
+          <div>
+            <a href={props.baseExcel}>
+              <h3>Download Data</h3>
+            </a>
+            {/*<DataDownload data={data}/>*/}
+            {parsedData}
+          </div>
+        }
+      </Collapse>
     </div>
   );
 }

@@ -64,8 +64,11 @@ const CsvReader = props => {
         {
           <div>
             <h1>File Upload</h1>
-            <CSVReader onFileLoaded={updateCsv} parserOptions={parseOptions} />
-            <h1>File Download</h1>
+            <CSVReader
+              className="csv-input"
+              onFileLoaded={updateCsv}
+              parserOptions={parseOptions}
+            />
             {csvData && (
               <CSVLink data={csvData}>
                 <h1>Download me</h1>

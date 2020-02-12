@@ -5,111 +5,52 @@ body {
   margin: 0%;
   text-align: center;
   font-family: 'Roboto Condensed', sans-serif;
-  background-color: #071F2F;
-  color: white;
+  background-color: lighten($medium-grey, 60);
+  color: $off-black;
 }
 
 h1, h2, h3, h4, h5 {
   font-family: 'Economica', sans-serif;
-  color: $light-blue;
+  color: $off-black;
 }
 
-.form {
-  height: 25px;
-  display: inline-block;
-  margin-bottom: 8px;
-}
-
-input {
-  background-color: #071F2F;
-  width: 300px;
-  height: 19px;
-  font-size: 16px;
-  margin: 0px;
-  font-family: 'Economica', sans-serif;
-  color: $light-blue;
-  /*background-color: #071F2F;*/
-}
-
-.form > input {
-  float: left;
-}
-
-.form > button {
-  float: right;
-  margin: 1px;
-}
-
-button {
-  height: 25px;
-  border-width: 0px;
-  background-color: #071F2F;
-  font-family: 'Roboto Condensed', sans-serif;
+.navbar {
+  background-color: $r-light-blue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 1;
+  opacity: 0.9;
   color: white;
 }
 
-.Gallery {
-  margin: 10px;
+
+input {
+  background-color: lighten($dark-blue, 80);
+  color: $off-black;
+  width: 100%;
+  font-size: $s-size;
+  font-family: 'Economica', sans-serif;
 }
 
-.Gallery > img {
-  width: 400px;
-  height: 25s0px;
-  z-index: -1;
-  opacity: 0.8;
-  object-fit: cover;
+
+button {
+  margin-top: 3px;
+  height: 25px;
+  border-radius: 3px;
+  background-color: lighten($dark-blue, 80);
 }
 
-.multiform {
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-}
-
-.multiform > div > input {
-  width: 40px;
-  font-size: 12px;
-  text-align: center;
-  margin-left: 5px;
-}
-
-.multiform > div {
-  float: left;
-}
-
-.task-list {
-  cursor: pointer;
-}
-
-.completed-list {
-  color: grey;
-}
-
-.delete-task {
-  color: black;
-  cursor: pointer;
-}
-
-.Stories > div {
-  margin: 15px;
-}
-
-.Matrix > img {
-  width: 500px;
-  height: 500px;
-  object-fit: cover;
-}
-
-.Jobs {
-  text-align: left;
+.form-button {
+  font-family: 'Economica', sans-serif;
+  font-size: $s-size;
+  margin-top: 10px;
+  width: 100%;
 }
 
 table {
   width: 100%;
-}
-
-th {
-  height: 50px;
 }
 
 .gg-plot {
@@ -123,26 +64,60 @@ th {
 }
 
 .ReactCollapse--collapse {
-  transition: height 500ms;
-}
+  transition: height 800ms;
 
-.page-button {
-  font-family: 'Economica', sans-serif;
-  width: 100%;
-  height: 50px;
-  background-color:$medium-grey;
-  border-width: 0 0 1px 0;
-  color: white;
-  font-size: 1.3rem;
 }
 
 .form-display {
-  background-color:$medium-grey;
-  display: flex;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-color: lighten($r-light-blue, 30);
+  display: grid; // display: flex
+  float: left;
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
   z-index: 1;
+  margin-right: 5px;
+  //margin-left: 5px;
+}
+
+.page-button {
+  border-radius: 10px;
+  font-family: 'Economica', sans-serif;
+  width: 100%;
+  height: 50px;
+  background-color: $medium-grey;
+  border-width: 0 0 1px 0;
+  color: $off-black;
+  font-size: $m-size;
+}
+
+.message {
+  border-radius: 10px;
+  //font-family: 'Economica', sans-serif;
+  //width: 100%;
+  height: 100%;
+  margin: 0px;
+  background-color: darken($medium-grey, 10);
+
+  //border-width: 0 0 1px 0;
+  color: $off-black;
+  //font-size: $m-size;
+}
+
+
+.csv-input {
+  background: white;
+  justify-content: center;
+}
+
+.page-button:hover {
+  background: lighten($light-blue, 30);
+}
+
+.main-tabs {
+  display: grid;
 }
 
 .form-input {
@@ -176,20 +151,10 @@ th {
   }
 }
 
-.navbar {
-  background-color: #131E25;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 2rem;
-  z-index: 1;
-  opacity: 0.9;
-  /*margin-bottom: 1rem;*/
-  /*background-color:$medium-grey;*/
-  color: white;
-}
+
 
 .markdown {
   width: 100%;
   height: 600px;
 }
+

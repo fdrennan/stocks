@@ -225,8 +225,6 @@ function App() {
 
   return (
     <div className="App">
-      {apiMessage ? <h3>{apiMessage}</h3> : <h3>{apiMessage}</h3>}
-
       <Form
         searchQuery={searchQuery}
         userQuery={userQuery}
@@ -238,24 +236,28 @@ function App() {
         userEndDate={userEndDate}
         setUserQuery={setUserQuery}
       />
-      <PusherApp />
-      <CsvReader />
 
-      <ToggleImage baseUrlImage={baseUrlImage} baseUrl={baseUrl} />
+      <div className="main-tabs">
+        {apiMessage && <h3 className="message">{apiMessage}</h3>}
+        <PusherApp />
+        <CsvReader />
 
-      <Collapse isOpened={true}>
-        <DataTable
-          apiMessage={apiMessage}
-          setApiMessage={setApiMessage}
-          baseUrl={baseUrl}
-          setBaseUrl={setBaseUrl}
-          baseExcel={baseExcel}
-        />
-      </Collapse>
+        <ToggleImage baseUrlImage={baseUrlImage} baseUrl={baseUrl} />
 
-      <Markdown htmlUrl={htmlUrl} pdfUrl={pdfUrl} />
+        <Collapse isOpened={true}>
+          <DataTable
+            apiMessage={apiMessage}
+            setApiMessage={setApiMessage}
+            baseUrl={baseUrl}
+            setBaseUrl={setBaseUrl}
+            baseExcel={baseExcel}
+          />
+        </Collapse>
 
-      <SearchHistory priorSearches={priorSearches} />
+        <Markdown htmlUrl={htmlUrl} pdfUrl={pdfUrl} />
+
+        <SearchHistory priorSearches={priorSearches} />
+      </div>
     </div>
   );
 }
