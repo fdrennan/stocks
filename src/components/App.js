@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import DataTable from "./DataTable";
 import Form from "./Form";
 import SearchHistory from "./SearchHistory";
-import ToggleImage from "./layout/ToggleImage";
+import ToggleImage from "./ToggleImage";
 import { Collapse } from "react-collapse";
 import Markdown from "./Markdown";
+import CsvReader from "./CsvReader";
+import PusherApp from "./PusherApp";
 
 const PORT = 8000;
-const LOCAL = false;
+const LOCAL = true;
 
 function App() {
   // Starting Function
@@ -68,7 +70,7 @@ function App() {
   // APPLICATION STARTING VARIABLES
   const [userQuery, setUserQuery] = useState("BOA, M, F, AKRX");
   const [userStartDate, setUserStartDate] = useState("2019-01-01");
-  const [userEndDate, setUserEndDate] = useState("2020-01-01");
+  const [userEndDate, setUserEndDate] = useState("2019-04-01");
   const [maDays, setMaDays] = useState("5");
   const [apiMessage, setApiMessage] = useState(undefined);
   const initialBaseUrl = baseUrlCreator(
@@ -81,7 +83,7 @@ function App() {
     LOCAL,
     false,
     false,
-      false
+    false
   );
   const initialBaseUrlImage = baseUrlCreator(
     PORT,
@@ -93,7 +95,7 @@ function App() {
     LOCAL,
     false,
     false,
-      false
+    false
   );
 
   const initialBaseExcel = baseUrlCreator(
@@ -106,7 +108,7 @@ function App() {
     LOCAL,
     true,
     false,
-      false
+    false
   );
 
   const initialBaseHtml = baseUrlCreator(
@@ -119,20 +121,20 @@ function App() {
     LOCAL,
     false,
     true,
-      false
+    false
   );
 
   const initialBasePdf = baseUrlCreator(
-      PORT,
-      userQuery,
-      userStartDate,
-      userEndDate,
-      maDays,
-      false,
-      LOCAL,
-      false,
-      false,
-      true
+    PORT,
+    userQuery,
+    userStartDate,
+    userEndDate,
+    maDays,
+    false,
+    LOCAL,
+    false,
+    false,
+    true
   );
 
   const [baseUrl, setBaseUrl] = useState(initialBaseUrl);
@@ -152,8 +154,8 @@ function App() {
       false,
       LOCAL,
       false,
-        false,
-        false
+      false,
+      false
     );
 
     const newBaseUrlImage = baseUrlCreator(
@@ -165,8 +167,8 @@ function App() {
       true,
       LOCAL,
       false,
-        false,
-        false
+      false,
+      false
     );
 
     const newBaseExcel = baseUrlCreator(
@@ -179,7 +181,7 @@ function App() {
       LOCAL,
       true,
       false,
-        false
+      false
     );
 
     const newBaseHtml = baseUrlCreator(
@@ -192,27 +194,27 @@ function App() {
       LOCAL,
       false,
       true,
-        false
+      false
     );
 
     const newBasePdf = baseUrlCreator(
-        PORT,
-        userQuery,
-        userStartDate,
-        userEndDate,
-        maDays,
-        false,
-        LOCAL,
-        false,
-        false,
-        true
+      PORT,
+      userQuery,
+      userStartDate,
+      userEndDate,
+      maDays,
+      false,
+      LOCAL,
+      false,
+      false,
+      true
     );
     // #1
     setBaseUrl(newBaseUrl);
     setBaseUrlImage(newBaseUrlImage);
     setBaseExcel(newBaseExcel);
     setPdfUrl(newBasePdf);
-    console.log('BASE PDF');
+    console.log("BASE PDF");
     console.log(pdfUrl);
     // let cleanTicker = userQuery.split(",").map(x => x.trim());
     // cleanTicker = JSON.stringify(cleanTicker);
@@ -223,8 +225,8 @@ function App() {
 
   return (
     <div className="App">
-      {apiMessage ? <div>{apiMessage}</div> : <div>{apiMessage}</div>}
-      {/*<SidebarMenu/>*/}
+      {apiMessage ? <h3>{apiMessage}</h3> : <h3>{apiMessage}</h3>}
+
       <Form
         searchQuery={searchQuery}
         userQuery={userQuery}
@@ -236,7 +238,9 @@ function App() {
         userEndDate={userEndDate}
         setUserQuery={setUserQuery}
       />
-      <br />
+      <PusherApp />
+      <CsvReader />
+
       <ToggleImage baseUrlImage={baseUrlImage} baseUrl={baseUrl} />
 
       <Collapse isOpened={true}>
@@ -249,7 +253,7 @@ function App() {
         />
       </Collapse>
 
-      <Markdown htmlUrl={htmlUrl} pdfUrl={pdfUrl}/>
+      <Markdown htmlUrl={htmlUrl} pdfUrl={pdfUrl} />
 
       <SearchHistory priorSearches={priorSearches} />
     </div>
